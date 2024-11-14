@@ -1,0 +1,70 @@
+name: CI for candidates API
+run-name: Candidates CI
+
+on:
+  push:
+    branches: 
+    - main
+  pull_request:
+    branches: 
+      - main
+    types: [opened, synchronize]
+  
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: candidates
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      working-directory: ./applications/candidates
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      working-directory: ./applications/candidates
+      run: python -m unittest discover tests
+    
+    - name: Docker build
+      working-directory: ./applications/candidates
+      run: docker build -t candidate-assessment-api:test .
+
+    - name: Configure AWS credentials
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Repository check/creation
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        aws ecr describe-repositories --repository-names ${{ env.ECR_REPOSITORY }} \
+        || aws ecr create-repository --repository-name ${{ env.ECR_REPOSITORY }}    
+
+    - name: Build, tag, and push image to Amazon ECR
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      working-directory: ./applications/candidates
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

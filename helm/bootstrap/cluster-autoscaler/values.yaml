@@ -1,0 +1,23 @@
+autoDiscovery:
+  clusterName: "dev-barkuni-eks"
+
+cloudProvider: aws
+awsRegion: us-east-1
+
+replicaCount: 1
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+
+rbac:
+  create: true
+  serviceAccount:
+    create: true
+    name: cluster-autoscaler-sa
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::058264138725:role/dev-barkuni-cluster-autoscaler

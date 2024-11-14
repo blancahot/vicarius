@@ -1,0 +1,18 @@
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller-sa
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::058264138725:role/dev-barkuniaws-load-balancer-controller
+
+clusterName: dev-barkuni-eks
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+replicaCount: 1
+logLevel: "info"
