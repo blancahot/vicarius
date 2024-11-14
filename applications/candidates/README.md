@@ -4,21 +4,21 @@ This directory contains the application code and tests for the Candidate Assessm
 
 ## Structure
 
-- `app/` - Main application directory containing the Flask API implementation
+- `main.py` - Main application directory containing the Flask API implementation
 - `tests/` - Test suite for the application
 
 ## Prerequisites
 
-- **Python**: Ensure you have Python 3.9 or higher installed on your machine.
+- **Python**: Ensure you install Python 3.9 or higher on your machine.
 - **Docker**: If you want to run the application in a container, make sure Docker is installed.
 - **pip**: Python's package installer should be available.
 
 ## Steps to Run the Application Locally
 
-1. **Clone the Repository**: If you haven't already, clone the repository containing the application code.
+1. **Clone the Repository**: If you haven't already, clone the application code repository.
 
    ```bash
-   git clone <repository-url>
+   git clone [repository-url](https://github.com/blancahot/vicarius.git)
    cd vicarius/applications/candidates
    ```
 
@@ -31,7 +31,7 @@ This directory contains the application code and tests for the Candidate Assessm
 3. **Run the Application**: You can run the Flask application directly using the following command:
 
    ```bash
-   python main.py
+   python3 main.py
    ```
 
    By default, the application will run on `http://127.0.0.1:5000`.
@@ -75,7 +75,7 @@ If you prefer to run the application using Docker, follow these steps:
      ```bash
      curl -X POST http://127.0.0.1:5000/candidates -H "Content-Type: application/json" -d '{"name": "Test User", "email": "test@example.com"}'
      ```
-   - **Create an Assesment**:
+   - **Create an Assessment**:
      ```bash
      curl -X POST http://localhost:5000/candidates/1/assess -H "Content-Type: application/json" -d '{"skill": "Python", "score": 100}'
      ```
@@ -83,4 +83,4 @@ If you prefer to run the application using Docker, follow these steps:
   
 ## Summary
 
-By following these steps, you can run the Candidate Assessment API locally and test its functionality. You can use both direct execution and Docker for running the application, and the provided test suite allows you to verify the correctness of the application.
+Following these steps, you can run the Candidate Assessment API locally and test its functionality. You can use both direct execution and Docker to run the application, and the provided test suite allows you to verify its correctness.
