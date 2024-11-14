@@ -24,7 +24,9 @@ For Candidates chart:
 helm upgrade -i dev ./candidates -f ./candidates/values.yaml -n dev --create-namespace
 ```
 
-The candidates app is exposed on: http://test-sb.vicarius.xyz
+The candidates app is exposed on: 
+
+[dev-barkuni-candidates](http://dev-barkuni-candidates-846977533.us-east-1.elb.amazonaws.com/)
 
 For debug purposes you can expose the app with port-forward command:
 ```
@@ -32,5 +34,4 @@ kubectl port-forward service/<service-name> <local-port>:<service-port> -n <name
 
 for example:
 kubectl port-forward service/dev-candidates 5000:80 -n dev
-
 ```
