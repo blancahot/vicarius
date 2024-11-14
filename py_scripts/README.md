@@ -21,6 +21,9 @@ Note:
 
 For example: 
 ```
-python create_ec2.py --ami_id ami-0abcdef1234567890 --instance_type t2.micro --subnet_id subnet-0123456789abcdef --key_name my-key --security_group_name my-sec-group --region us-west-2 --vpc_id vpc-0123456789abcdef
+python3 create_ec2.py --ami_id ami-063d43db0594b521b --instance_type t2.micro --subnet_id subnet-0e0369ecd28a24ad2 --key_name dev-barkuni-key --security_group_name dev-barkuni-sg --region us-east-1 --vpc_id vpc-0edfa352381a03c4e
 ```
-
+Note:
+Amazon Linux 2023 AMI 64-bit (x86) - ami-063d43db0594b521b
+Public subnet: subnet-0e0369ecd28a24ad2
+Key-pair: dev-barkuni-key
