@@ -14,6 +14,7 @@ spec:
   ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
   rules:
+    {{- if hasKey .Values.ingress "hosts" }}
     {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
@@ -27,5 +28,16 @@ spec:
                 port: 
                   number: {{ $.Values.service.port }}
           {{- end }}
+    {{- end }}
+    {{- else }}
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "candidates.fullname" . }}
+                port: 
+                  number: {{ $.Values.service.port }}
     {{- end }}
 {{- end }}

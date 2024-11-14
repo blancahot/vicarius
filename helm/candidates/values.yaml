@@ -38,10 +38,10 @@ ingress:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
   className: alb
-  hosts:
-    - host: test-sb.vicarius.xyz
-      paths: ["/"]
-
+  # hosts:
+  #   - host: test-sb.vicarius.xyz
+  #     paths: ["/"]
+  
 resources:
   limits:
     cpu: 100m
