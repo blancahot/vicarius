@@ -25,3 +25,12 @@ helm upgrade -i dev ./candidates -f ./candidates/values.yaml -n dev --create-nam
 ```
 
 The candidates app is exposed on: http://test-sb.vicarius.xyz
+
+For debug purposes you can expose the app with port-forward command:
+```
+kubectl port-forward service/<service-name> <local-port>:<service-port> -n <namespace>
+
+for example:
+kubectl port-forward service/dev-candidates 5000:80 -n dev
+
+```
