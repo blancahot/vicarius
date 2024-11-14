@@ -24,6 +24,9 @@ For example:
 python3 create_ec2.py --ami_id ami-063d43db0594b521b --instance_type t2.micro --subnet_id subnet-0e0369ecd28a24ad2 --key_name dev-barkuni-key --security_group_name dev-barkuni-sg --region us-east-1 --vpc_id vpc-0edfa352381a03c4e
 ```
 Note:
-Amazon Linux 2023 AMI 64-bit (x86) - ami-063d43db0594b521b
+
+Amazon Linux 2023 AMI 64-bit (x86): ami-063d43db0594b521b
+
 Public subnet: subnet-0e0369ecd28a24ad2
+
 Key-pair: dev-barkuni-key
