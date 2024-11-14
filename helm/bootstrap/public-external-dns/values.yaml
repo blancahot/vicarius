@@ -1,0 +1,29 @@
+aws:
+  region: us-east-1
+
+domainFilters:
+  - "vicarius.xyz"
+
+serviceAccount:
+  create: true
+  name: public-eks-external-dns-sa
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::058264138725:role/dev-barkuni-public-eks-external-dns
+
+txtOwnerId: "dev-barkuni"
+
+resources:
+  requests:
+    memory: 50Mi
+    cpu: 10m
+  limits:
+    memory: 128Mi
+    cpu: 100m
+
+extraArgs:
+  - --aws-zone-type=public
+  - --annotation-filter=alb.ingress.kubernetes.io/scheme=internet-facing
+
+sources:
+  - ingress
+
