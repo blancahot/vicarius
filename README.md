@@ -12,7 +12,7 @@ This repository contains the code and infrastructure for the Barkuni Candidate A
 
 - **Helm Charts**: Used for packaging and deploying the Candidate Assessment API and other components to a Kubernetes cluster, facilitating easy management of application deployments.
 
-- **Continuous Integration/Continuous Deployment (CI/CD)**: Implemented using GitHub Actions to automate testing and deployment processes for the Candidate Assessment API, including building Docker images and pushing them to Amazon ECR.
+- **Continuous Integration(CI)**: Implemented using GitHub Actions to automate testing and build processes for the Candidate Assessment API, including building Docker images and pushing them to Amazon ECR.
 
 - **EC2 Instance Creation Script**: A Python script that automates the creation of EC2 instances in AWS, requiring configured AWS credentials and a key pair for SSH access.
 
