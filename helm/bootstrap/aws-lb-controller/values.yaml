@@ -2,7 +2,7 @@ serviceAccount:
   create: true
   name: aws-load-balancer-controller-sa
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::058264138725:role/dev-barkuniaws-load-balancer-controller
+    eks.amazonaws.com/role-arn: arn:aws:iam::058264138725:role/dev-barkuni-aws-load-balancer-controller
 
 clusterName: dev-barkuni-eks
 

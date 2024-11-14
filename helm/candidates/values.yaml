@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 058264138725.dkr.ecr.us-east-1.amazonaws.com/candidates
-  tag: ""
+  tag: "d4aa132477fe47d18715a555c873fa45d39aa5dc"
   pullPolicy: IfNotPresent
 
 containerPort: 5000
@@ -37,7 +37,7 @@ ingress:
     alb.ingress.kubernetes.io/load-balancer-name: dev-barkuni-candidates
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
-  ingressClassName: alb
+  className: alb
   hosts:
     - host: test-sb.vicarius.xyz
       paths: ["/"]

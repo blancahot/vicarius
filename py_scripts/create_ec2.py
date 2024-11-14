@@ -21,18 +21,7 @@ def create_security_group(ec2, group_name, description, vpc_id):
             ]
         )
 
-        # Add outbound rule to allow all traffic (IPv4 and IPv6)
-        ec2.authorize_security_group_egress(
-            GroupId=security_group_id,
-            IpPermissions=[
-                {
-                    'IpProtocol': '-1',  # -1 indicates all protocols
-                    'IpRanges': [{'CidrIp': '0.0.0.0/0'}],
-                    'Ipv6Ranges': [{'CidrIpv6': '::/0'}]
-                }
-            ]
-        )
-        print("Inbound and outbound rules added to the security group.")
+        print("Inbound rules added to the security group.")
         return security_group_id
 
     except Exception as e:
